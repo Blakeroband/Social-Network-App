@@ -86,5 +86,19 @@ export default {
     } catch (err) {
       res.status(500).json(err);
     }
-  }
+  },
+
+  // GET all reactions
+  async getAllReactions(req: Request<{ thoughtId: string}>, res: Response) {
+    try {
+      const thought = await Thought.findOne({ _id: req.params.thoughtId });
+      if (thought) {
+        res.json(thought.reactions);
+      } else {
+        res.status(404).json({ message: 'Thought not found' });
+      }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };
