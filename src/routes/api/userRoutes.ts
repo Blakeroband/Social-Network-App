@@ -11,13 +11,13 @@ router.route('/users')
 
 
   // /api/users/:userId
-router.route('/:Id')
+router.route('/users/:Id')
   .get(userController.getUserById)
   .put(userController.updateUserById)
   .delete(userController.deleteUserById);
 
 // /api/users/:userId/friends/:friendId
-router.route('/:userId/friends/:friendId')
+router.route('/users/:Id/friends/:Id')
   .post(userController.addFriend)
   .delete(userController.removeFriend);
 
