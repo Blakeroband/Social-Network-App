@@ -7,7 +7,7 @@
 // DELETE to remove a reaction
 
 import { Request, Response } from 'express';
-import { Thought } from '../models';
+import { Thought } from '../models/index.js';
 
 export default {
   // GET all thoughts
