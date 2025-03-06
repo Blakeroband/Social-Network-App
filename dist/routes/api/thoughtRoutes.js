@@ -4,7 +4,8 @@ const router = Router();
 // /api/thoughts
 router.route('/')
     .get(thoughtController.getAllThoughts)
-    .post(thoughtController.createThought);
+    .post(thoughtController.createThought)
+    .delete(thoughtController.deleteAllThoughts);
 // /api/thoughts/:thoughtId
 router.route('/:thoughtId')
     .get(thoughtController.getThoughtById)

@@ -6,6 +6,7 @@
 // POST to create a reaction
 // DELETE to remove a reaction
 import { Thought } from '../models/index.js';
+import { User } from '../models/index.js';
 export default {
     // GET all thoughts
     async getAllThoughts(_req, res) {
@@ -31,6 +32,8 @@ export default {
     async createThought(req, res) {
         try {
             const thought = await Thought.create(req.body);
+            // Update the user's thoughts array with the new thought ID
+            await User.findOneAndUpdate({ _id: req.body.userId }, { $push: { thoughts: thought._id } }, { new: true });
             res.json(thought);
         }
         catch (err) {
@@ -52,6 +55,16 @@ export default {
         try {
             const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
             res.json(thought);
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
+    },
+    // DELETE all thoughts
+    async deleteAllThoughts(_req, res) {
+        try {
+            const result = await Thought.deleteMany({});
+            res.json({ message: `${result.deletedCount} thoughts deleted.` });
         }
         catch (err) {
             res.status(500).json(err);

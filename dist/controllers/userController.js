@@ -50,6 +50,16 @@ export default {
             res.status(500).json(err);
         }
     },
+    // DELETE to remove all users
+    async deleteAllUsers(_req, res) {
+        try {
+            const users = await User.deleteMany();
+            res.json(users);
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
+    },
     // POST to add a new friend to a user's friend list
     async addFriend(req, res) {
         try {

@@ -4,7 +4,8 @@ const router = Router();
 // /api/users
 router.route('/')
     .get(userController.getAllUsers)
-    .post(userController.createUser);
+    .post(userController.createUser)
+    .delete(userController.deleteAllUsers);
 // /api/users/:userId
 router.route('/:userId')
     .get(userController.getUserById)

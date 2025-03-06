@@ -4,23 +4,24 @@ import thoughtController from '../../controllers/thoughtController.js';
 const router = Router();
 
 // /api/thoughts
-router.route('/thoughts')
+router.route('/')
   .get(thoughtController.getAllThoughts)
-  .post(thoughtController.createThought);
+  .post(thoughtController.createThought)
+  .delete(thoughtController.deleteAllThoughts);
 
 // /api/thoughts/:thoughtId
-router.route('/thoughts/:Id')
+router.route('/:thoughtId')
   .get(thoughtController.getThoughtById)
   .put(thoughtController.updateThoughtById)
   .delete(thoughtController.deleteThoughtById);
 
-// /api/thoughts/thought/:Id/reactions
-router.route('/thoughts/:Id/reactions')
+// /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions')
   .post(thoughtController.createReaction)
   .get(thoughtController.getAllReactions);
 
-// /api/thoughts/thought/:Id/reactions/:reactionId
-router.route('/thoughts/:Id/reactions/:Id')
-    .delete(thoughtController.deleteReaction);
-
+// /api/thoughts/:thoughtId/reactions/:reactionId
+router.route('/:thoughtId/reactions/:reactionId')
+  .delete(thoughtController.deleteReaction);
+  
 export default router;  
